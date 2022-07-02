@@ -42,7 +42,7 @@ resource "null_resource" "forpasswd" {
   depends_on = [aws_instance.tf-nexus-server]
 
   provisioner "local-exec" {
-    command = "sleep 3m"
+    command = "aws ec2 wait instance-status-ok --instance-ids ${aws_instance.tf-nexus-server.id}"
   }
 
   # Do not forget to define your key file path correctly!
